@@ -11,6 +11,8 @@ Representation learning for urbanization analysis from Sentinel-2 multispectral 
 
 This project investigates whether urbanization patterns can be learned from **multispectral satellite imagery** by combining local Sentinel-2 observations with large-scale built-up information from the **Global Human Settlement Layer (GHSL)**.
 
+The main challenge is the **spatial-scale mismatch between the two data sources**: EuroSAT provides local 64×64 Sentinel-2 image patches, while GHSL represents built-up surface at a substantially coarser spatial resolution. GHSL is therefore used as a **weak supervisory signal**, rather than as an exact pixel-level ground truth.
+
 The analysis uses **6,857 georeferenced EuroSAT patches** from the Highway, Industrial and Residential classes, associated with continuous GHSL built-up values.
 
 The workflow consists of two main stages:
@@ -18,7 +20,7 @@ The workflow consists of two main stages:
 1. **Exploratory analysis and regression baselines** using spectral, geographic and land-use predictors.
 2. **Representation learning** using a Siamese network with a pretrained ResNet-18 encoder and an adaptive contrastive loss.
 
-GHSL is used as a weak supervisory signal to learn an embedding structured according to urbanization intensity.
+The objective is to learn an embedding space in which satellite observations are organized according to their underlying urbanization intensity.
 
 ## Methodology
 
@@ -26,7 +28,7 @@ Initial non-linear regression experiments with Random Forest, Extra Trees and XG
 
 GHSL values are subsequently organized into three ordered urbanization strata — **Low, Medium and High** — and used to construct image pairs for metric learning.
 
-A **Siamese ResNet-18** projects satellite patches into a **128-dimensional L2-normalized embedding space**, where the adaptive contrastive objective encourages larger separation between increasingly different urbanization levels.
+A **Siamese ResNet-18** projects satellite patches into a **128-dimensional L2-normalized embedding space**, where an adaptive contrastive objective encourages larger separation between increasingly different urbanization levels.
 
 ## Results
 
@@ -38,7 +40,7 @@ The learned representation shows a strong ordering with continuous GHSL built-up
 
 Grad-CAM analysis further indicates that the model focuses on increasingly coherent built-up structures as urbanization intensity increases.
 
-Overall, the results show that metric learning can recover meaningful spatial structure from multispectral satellite imagery using coarse built-up information as weak supervision.
+Overall, the results show that metric learning can recover spatial structure associated with urbanization from local multispectral satellite observations, despite supervision being available only at a coarser spatial scale.
 
 ## Repository Structure
 
