@@ -26,9 +26,11 @@ The objective is to learn an embedding space in which satellite observations are
 
 Initial non-linear regression experiments with Random Forest, Extra Trees and XGBoost reach approximately **R² ≈ 0.65**, highlighting the limitations of spectral and geographic predictors alone in capturing urban morphology.
 
-GHSL values are subsequently organized into three ordered urbanization strata — **Low, Medium and High** — and used to construct image pairs for metric learning.
+To derive a discrete supervisory structure from the continuous GHSL signal, **clustering is applied to GHSL built-up values to identify three data-driven urbanization strata — Low, Medium and High**. These ordered strata are then used to construct positive and negative image pairs for metric learning.
 
-A **Siamese ResNet-18** projects satellite patches into a **128-dimensional L2-normalized embedding space**, where an adaptive contrastive objective encourages larger separation between increasingly different urbanization levels.
+A **Siamese ResNet-18** projects satellite patches into a **128-dimensional L2-normalized embedding space**. Images belonging to the same urbanization stratum form positive pairs, while images from different strata form negative pairs.
+
+Training uses an **adaptive contrastive loss**, with larger separation margins assigned to pairs belonging to more distant urbanization strata. The resulting embedding is therefore encouraged to preserve not only similarity within each group, but also the **ordinal structure of urbanization intensity**.
 
 ## Results
 
