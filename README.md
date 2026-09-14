@@ -46,8 +46,7 @@ Overall, the results show that metric learning can recover spatial structure ass
 
 
 ### Notebook
-
-[![View the complete notebook with nbviewer]([https://nbviewer.org/github/martalombardi/urbanization-from-multispectral-satellite-imagery/blob/main/urbanization_from_multispectral_satellite_imagery.ipynb](https://nbviewer.org/github/martalombardi/urbanization-from-multispectral-satellite-imagery/blob/main/urbanization_from_multispectral_satellite_imagery.ipynb)]
+[View the complete notebook with nbviewer](https://nbviewer.org/github/martalombardi/urbanization-from-multispectral-satellite-imagery/blob/main/urbanization_from_multispectral_satellite_imagery.ipynb)
 
 ## Repository Structure
 
